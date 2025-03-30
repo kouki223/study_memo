@@ -3,7 +3,7 @@
     https://prog-8.com/dashboard
     ドキュメント
     ・プロを目指す人のためのRuby入門
-    ![Ruby入門書](image.png)
+    ![Ruby入門書](/Public/image.png)
 - Rubyの概要
     - Rubyという言葉の出自
         - 元々、6月にPealという言語が登場していた
