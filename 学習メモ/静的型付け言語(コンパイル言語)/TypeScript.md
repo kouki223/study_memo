@@ -1526,4 +1526,273 @@ TypeScriptのメモ
         - 安全である事
         - 修正・改善などコードの保守がしやすい事
 
+
+- 読んで学ぶTypeScript
+  - 値・型・変数
+  変数宣言: letとconst
+  変数宣言の型注釈
+  varはもう使わない
+  変数宣言の型推論
+  型推論と動的型付けの違い
+  プリミティブ型
+  boolean型
+  number型
+  string型
+  null型
+  undefined型
+  undefinedとnullの違い
+  symbol型
+  bigint型
+  型強制
+  ボックス化
+  リテラル型
+  any型
+  オブジェクト
+  構造的型付け
+  配列
+  タプル
+  列挙型
+  ユニオン型
+  判別可能なユニオン型
+  インターセクション型
+  型エイリアス
+  型アサーション「as」
+  constアサーション「as const」
+  satisfies演算子 「satisfies operator」
+  明確な割り当てアサーション
+  typeof演算子
+  等価であるということ
+  truthyな値、falsyな値
+  型のメンタルモデル
+  - 文
+  変数のスコープ
+  if-else文
+  三項演算子
+  for-of文 - 拡張for文
+  switch文
+  switchのフォールスルー問題
+  switchと変数スコープ
+  例外処理
+  never型
+  制御フロー分析と型ガードによる型の絞り込み
+  unknown型
+  anyとunknownの違い
+  - 関数
+    関数宣言
+    関数式
+    アロー関数
+    関数の型の宣言
+    関数宣言と巻き上げ
+    従来の関数とアロー関数の違い
+    関数は値
+    関数はオブジェクト
+    戻り値がない関数とvoid型
+    関数の引数
+    値渡しと参照渡し
+    オプション引数
+    デフォルト引数
+    残余引数/可変長引数
+    this引数
+    分割代入引数
+    キーワード引数とOptions Objectパターン
+    型ガード関数
+    アサーション関数
+    即時実行関数式(IIFE)
+    コールバック関数
+    オーバーロード関数
+  - 非同期処理
+    Promise<T>
+    async
+    await
+  - オブジェクト指向
+    クラス
+    インターフェース
+    JavaScriptとTypeScriptのオブジェクト指向機能の比較
+  - JSX
+  - 組み込みAPI
+    Map<K, V>
+    Set<T>
+    Date
+    RegExp
+    Error
+  - 🚧モジュール
+  - import、export、require
+  - シングルプロセス・シングルスレッドとコールバック
+  - 型の再利用
+    typeof型演算子
+    keyof型演算子
+    ユーティリティ型
+    Mapped Types
+    インデックスアクセス型
+    Conditional Types
+    infer
+    ユニオン分配
+  - ジェネリクス
+    ジェネリクスが使われている標準ライブラリ
+    型変数
+    型引数の制約
+    デフォルト型引数
+    変性
+  - tsconfig
+    tsconfig.jsonを設定する
+    オプションの一覧
+    strict
+    noImplicitAny
+    strictNullChecks
+    strictFunctionTypes
+    strictBindCallApply
+    strictPropertyInitialization
+    noImplicitThis
+    useUnknownInCatchVariables
+    alwaysStrict
+    noUnusedLocals
+    noUnusedParameters
+    exactOptionalPropertyTypes
+    noImplicitReturns
+    noFallthroughCasesInSwitch
+    noUncheckedIndexedAccess
+    noImplicitOverride
+    noPropertyAccessFromIndexSignature
+    isolatedModules
+  - 型定義ファイル
+    Advanced Topics
+  - NPMパッケージ開発者のためのtsconfig
+  デュアルパッケージ開発者のためのtsconfig
+  ジェネレーター
+  セッターとゲッター
+  プロジェクト参照
+- Tips
+  オブジェクトを浅くコピーする
+  オブジェクトをマージ (結合) する
+  オブジェクトのサブセットを得る
+  オブジェクトで受け、オブジェクトを返す
+  コンパニオンオブジェクトパターン
+  オブジェクトから型を生成する
+  オブジェクトからキーの型を生成する
+  オブジェクトからプロパティの型を生成する
+  配列から型を生成する
+  配列から全要素の型を生成する
+- 索引:記号とキーワード
+  - 記号
+    ! 論理否定演算子 (logical not operator) js
+    ! 非Nullアサーション (non-null assertion operator) ts
+    ! 明確な割り当てアサーション演算子 (definite assignment assertion operator) ts
+    !! Double Bang js
+    != 不等価演算子 (inequality operator) js
+    !== 厳密不等価演算子 (strict inequality operator) js
+    " 文字列リテラル (string literal) js
+    # プライベートプロパティ (private property) js
+    $ ドル変数 (dollar variable) js
+    $ 文字列中の変数展開 (placeholder) js
+    % 剰余演算子 (reminder operator) js
+    %= 剰余代入 (reminder assignment) js
+    & ビット論理積 (bitwise and) js
+    & インターセクション型 (intersection type) ts
+    &= ビット論理積代入 (bitwise and assignment) js
+    && 論理積 (logical and) js
+    &&= 論理積代入 (logical and assignment) js
+    ' 文字列リテラル (string literal) js
+    () 即時実行関数の一部 (IIFE: immediately invoked function expression) js
+    * 乗算演算子 (multiplication operator) js
+    * ジェネレーター関数の宣言 (generator) js
+    * yield*式 (yield) js
+    *= 乗算代入 (multiplication assignment) js
+    ** べき乗演算子 (exponentiation) js
+    **= べき乗代入 (exponentiation assignment) js
+    + 単項正値演算子 js
+    + 加算演算子 (addition operator) js
+    + 文字列結合演算子 (concatenation operator) js
+    + 修飾子の付加 ts
+    += 加算代入 (addition assignment) js
+    ++ インクリメント (increment) js
+    , 関数引数の区切り js
+    , 配列要素の区切り js
+    , オブジェクトプロパティの区切り js
+    , タプル型の要素の区切り ts
+    , カンマ演算子 (comma operator) js
+    - 単項負値演算子 js
+    - 減算演算子 (subtraction operator) js
+    - 修飾子の削除 ts
+    -= 減算代入 (subtraction assignment) js
+    -- デクリメント (decrement) js
+    . プロパティへのアクセス (dot operator) js
+    ... スプレッド構文 (spread syntax) js
+    ... 残余構文 (rest syntax) js
+    / 除算演算子 (division operator) js
+    / 正規表現リテラル (regular expression literal) js
+    /= 除算代入 (division assignment) js
+    // 一行コメント (one line comment) js
+    /* 複数行コメント (multiline comment) js
+    /** JSDoc
+    : オブジェクトの一部 js
+    : 三項演算子の一部 (conditional operator) js
+    : 型アノテーション (type annotation) ts
+    < 小なり演算子 (less than operator) js
+    < ジェネリクス (generic) ts
+    < JSX ts
+    < 型アサーション (type assertion) ts
+    <= 小なりイコール演算子 (less than or equal) js
+    << ビット左シフト演算子 (left shift operator) js
+    <<= 左シフト代入 (left shift assignment) js
+    = 代入演算子 (assignment) js
+    == 等価演算子 (equality) js
+    === 厳密等価演算子 (strict equality) js
+    => アロー関数の一部 (arrow function) js
+    > 大なり演算子 (greater than) js
+    >= 大なりイコール演算子 (greater than or equal) js
+    >> ビット右シフト演算子 (right shift) js
+    >>= 右シフト代入 (right shift assignment) js
+    >>> 符号なし右シフト演算子 (unsigned right shift) js
+    >>>= 符号なし右シフト代入 (unsigned right shift assignment) js
+    ? 三項演算子の一部 (conditional operator) js
+    ? オプション修飾子 (optional property) ts
+    ?. オプショナルチェーン (optional chaining) js
+    ?? Null合体 (nullish coalescing operator) js
+    ??= Null合体代入 (logical nullish assignment) js
+    @ デコレーター (decorator) ts
+    [ 配列リテラル (array literal notation) js
+    [ アクセッサー (bracket notation) js
+    [ 配列の分割代入 (destructuring assignment) js
+    [ インデックス型 (index signature) ts
+    [] 配列型 (array type) ts
+    文字列エスケープシーケンス (escaping character) js
+    ^ ビット排他的論理和 (bitwise xor) js
+    ^= ビット排他的論理和代入 (bitwise xor assignment) js
+    _ 数値の区切り文字 js
+    _ アンダースコア変数 js
+    ` テンプレートリテラル (template literal) js
+    { ブロック文 (block) js
+    { オブジェクトの分割代入 (destructuring assignment) js
+    | ビット論理和 (bitwise or) js
+    | ユニオン型 (union type) ts
+    |= ビット論理和代入 (bitwise or assignment) js
+    || 論理和 (logical or) js
+    ||= 論理和代入 (logical or assignment) js
+    ~ ビット否定演算子 (bitwise not) js
+    ~~ Double Tilde js
+    キーワード
+    as 型アサーション (type assertion) ts
+    as const constアサーション (const assertion) ts
+    const const js
+    get ゲッター (get) js
+    in in演算子 (in operator) js
+    in for-in構文 js
+    in Mapped Types ts
+    is 型アサーション関数の一部 (user-defined type guard) ts
+    keyof keyof型演算子 (keyof) ts
+    n bigintリテラル (bigint literal) js
+    typeof typeof演算子 (typeof) js
+    typeof typeof型演算子 (typeof) ts
+    set セッター (set) js
+    void void演算子 (void) js
+    void void型 (void) ts
+- TypeScriptの学習リソース
+  - 最終的にはドキュメントを読む必要があるという部分
+    - ただ、英語で記載されているなどの障壁があるため難しい部分がある可能性がある
+      - 読み方などのハンドブックを作成
+- TypeScript Playgroundの使い方
+  - ブラウザでTSの実行環境が用意されている
+    - TSをインストールせずにブラウザで使用が可能になる
+- 🚧TypeScript超入門 〜10分でわかるTypeScriptの概要〜
+  - 今後、開設予定
             
