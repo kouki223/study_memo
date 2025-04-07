@@ -1,5 +1,3 @@
-TypeScriptのメモ
-
 - 学習ソース
     https://mosya.dev/react/dashboard
     https://recursionist.io/learn/languages/typescript/function/callback
@@ -27,6 +25,8 @@ TypeScriptのメモ
         - 型のチェック
             - データの型をチェックする事で間違いを教えてくれる
                 - 事前に間違いを防ぐ事が出来る
+    - プログラミング指向
+      - TypeScriptはオブジェクト指向、関数型プログラミングのどちらもサポート
     - TypeScriptの開発背景
         - 1995年 JavaScript開発される
             - JavaScriptは当初、大規模開発を想定されていなかった
@@ -38,6 +38,8 @@ TypeScriptのメモ
                         - JavaScriptのスーパーセット
                         - モジュール性
                         - 型
+        - TypeScriptはスケーラブルなJavaScriptの上位互換言語
+          - 大規模開発にも適している
     - 静的型付け言語と動的型付け言語の差
         - 静的型付け言語
             - コンパイル時に型が決まる言語
@@ -59,6 +61,14 @@ TypeScriptのメモ
                     - 型注釈は、自分専属のコードレビュアであるコンパイラを育てるための投資
         - 動的型付け言語
             - 実行時に型が決まる言語
+    - 型のシステム
+      - 公称型　＝＞　Java、PHP
+        - 継承関係に着目するシステム
+          - 同じようなプロパティ、データ構造を持っていたとした場合でも継承関係がなければ互換性がないシステム
+      - 構造的部分型システム　＝＞　TS
+        - オブジェクトの形状に基づいて型を判別する
+          - データ構造が同じであれば互換性がある
+            - データ構造　=> オブジェクトが持つプロパティが互換しているのか？
     - エディターとの相性
         - データの型情報を事前に渡す事でエディターの補完機能を使う事が出来る
             - 開発効率も向上する
@@ -78,6 +88,13 @@ TypeScriptのメモ
         - TypeScriptとJavaScriptを比較した時に実行後の速度に変化が起きる事はない
             - TypeScriptは型チェックを実行したのちには計算結果などに変換する訳ではない
                 - JavaScriptになってからは処理に差がない
+    - サバイバルTypeScript
+      - これからプログラムを始める
+      - 始めたばかり
+        - 最低限これだけ知っていればという内容の知識を詰め込んだドキュメント
+    - TypeScriptにおけるメモリ管理
+      - JavaScriptと同様のメモリ管理を行う
+        - JavaScriptの画ベレージコレクションを用いて自動的にメモリを解放する
 - TypeScriptの仕様
     - 型の指定
         - 型の種類と基本構文：
@@ -338,8 +355,10 @@ TypeScriptのメモ
                     このコードでuseState(0)を記載すると
                     初期値として0を持つ変数countと変数countを更新するための関数seCountが取得できる
                     [count, setCount]で[変数, その変数を変更するための関数]となる
-                    ```
-                    
+                    ``` 
+    - 型推論
+      - 型注釈がついていない変数でもコンテキストに基づいて型を推測する
+        - 型を明示しなくても安全性がます
     - 関数に型を定義する
         - 関数に型を適用する
             - 関数の受け取る引数
@@ -359,8 +378,7 @@ TypeScriptのメモ
         
         ```tsx
         type 型名: (変数名: 引数1の型, 変数名: 引数2の型, ...) => 戻り値の型;
-        ```
-        
+        ```        
     - オブジェクトや配列などの複雑な型を示す方法
         - オブジェクトにtypeを使って型を示す方法
             - オブジェクトの各プロパティに対してデータの型を示す事が出来る
@@ -570,11 +588,11 @@ TypeScriptのメモ
               // hobby: { getAll: () => "プログラミング" },
             };
             const myHobby = member.hobby?.getAll() ?? "趣味はありません";
-            ```
-            
-    - class
+            ```            
+    - classとinterface
         - オブジェクトの雛形
             - クラスからインスタンスを作成する
+              - interfaceを使う事でコードの再利用、継承、大規模プロジェクトを管理する際に役に立つ
             
             ```tsx
             class Greeter {
@@ -593,8 +611,7 @@ TypeScriptのメモ
             
             let greeter = new Greeter("Hello, ", "Taro");
             console.log(greeter.greet()) // => Hello, Taro 
-            ```
-            
+            ```            
     - constructor
         - インスタンスの生成時に実行されるメソッド
             - Rubyでのattr_accessorのようなもの
@@ -611,8 +628,7 @@ TypeScriptのメモ
             var taro = new User("Taro");
             console.log(taro.name); //Taroが出力される。
             
-            ```
-            
+            ```            
     - readOnly
         - 一度設定された値を変更できないようにする（読み取り専用）にするもの
             - プロパティ名の前にreadOnlyを記載する事で読み取り専用になる
@@ -658,13 +674,13 @@ TypeScriptのメモ
             ```tsx
             const pair: readonly [number, string] = [1, "apple"];
             pair[0] = 2; // エラー
-            ```
-            
+            ```            
     - ジェネリクス
         - 型の変数
             - <T>を使う事で様々な種類の型を同じ関数で使う事ができる
                 - ＜＞の中に入るものは型パラメーターと呼ばれる
                     - Typeの頭文字でTが取られる事が多い
+          - 汎用的で再利用可能なコードを書ける
         - 使い方
             - 関数名の後に<T>を記載する
                 - ＜T＞は様々な型に対応する事ができる
@@ -693,8 +709,7 @@ TypeScriptのメモ
             const strings = ["apple", "banana", "cherry"];
             const targetString = findElement(strings, "banana");
             console.log(targetString); // targetStringの型はstring | undefined
-            ```
-            
+            ```            
     - callback関数に関して
         - コールバック関数とは
             - 関数の引数にその関数自身によって呼び出される関数が入ったもの
@@ -801,7 +816,14 @@ TypeScriptのメモ
                 ageLabel.innerText = data.age;
             });
             ```
-            
+    - 非同期処理
+      - JavaScript同様にイベント駆動型の非同期プログラミング
+        - Promiseやasync/awaitを使って非同期処理を実装する
+    - シングルスレッドモデル
+      - シンプルで分かりやすいコードを実現する
+        - イベントループ
+        - 非同期処理
+          - これらでタスク処理をコントロールする
     - 演習
         - 引数に型を指定する
             - 要件
