@@ -7,7 +7,7 @@
     - https://qiita.com/renesisu727/items/a21c7f5d1604700b7111
 - Railsの概念
     - Railsとは？
-        - webアプリケーションのフレームワーク
+        - Rubyで記載されたwebアプリケーションのフレームワーク
             - フレームワーク
                 - 物事を考える上での枠組み
             - Webアプリケーションを作る上での枠組み
@@ -45,6 +45,15 @@
                 - インスタンス　＝＞　クラス
                     - インスタンスから見るとクラスは1つしかない
                     - クラスから見るとインスタンスはたくさんある
+    - Railsの開発志向
+        - Railsを使う事で開発が楽になる
+            - 最前な開発の方法は1つである
+                - 特定の開発において開発手法を1つに絞って、それに沿った支援を全面的に行う
+                    - 開発指向に沿わない開発方法は逆にやりずらい
+                        - 言語は自由な言語だけど、フレームワークはそうじゃない
+    - 大原則
+        - 繰り返しを避けよ（Don't Repeat Yourself: DRY）
+        - 設定より規約が優先（Convention Over Configuration）
 - Ruby on Railsの仕様
     - Ruby on Rails とは？
         - Webフレームワークの一種
@@ -60,6 +69,9 @@
             - Bootstrap
                 - CSSのフレームワーク
                     - Webサイト各々の部品ごとの枠組みを提供する
+    - migation
+        - データベースに対して行う一連の変更のこと
+            - データベースのテーブルやカラム、その他の属性に対して変更、追加、削除などができる
     - Railsコマンド
         - コマンドとは？
             - コンピュータへの指令(命令)
@@ -4531,3 +4543,174 @@ Rails
 　　 　  modelでテーブル操作をする
 　　最近の流れ
 　　　RailsをMVCとして扱わずにMCのみを活用しViewは他の言語を使用する
+
+- ***Railsドキュメント(/52章)***
+
+- Ruby on Rails インストールガイド
+    - Rubyプログラミング言語とRuby on Railsのインストール方法について解説します。
+- Dev Container での開発ガイド
+    - VS CodeとDev Containerを使ってRailsアプリケーションの開発を行う方法について解説します。
+- モデル
+    - Active Record の基礎
+        - Active Recordの基礎となるモデル、データベースへの永続的な保存、Active Recordパターンとライブラリについて解説します。
+
+Active Record マイグレーション
+Active Recordのマイグレーション（migration）を使って、データベースを構造化された方法で整然と変更する方法について解説します。
+
+Active Record バリデーション
+Active Recordのバリデーション機能について解説します。
+
+Active Record コールバック
+Active Recordのコールバックについて解説します。
+
+Active Record の関連付け
+Active Recordが提供するすべての関連付け機能（アソシエーション）について解説します。
+
+Active Record クエリインターフェイス
+Active Recordが提供するすべてのデータベースクエリインターフェイスについて解説します。
+
+Active Model の基礎
+Active Recordを使わずにモデルクラスを扱う方法について解説します。
+
+ビュー
+Action View の概要
+Action Viewの概要を紹介し、共通のビューヘルパーについてもある程度解説します。
+
+レイアウトとレンダリング
+Action ControllerとAction Viewが提供する基本的なレイアウト機能について解説します。画面出力（レンダリング）やリダイレクト、content_forブロックとパーシャル（部分テンプレート）の利用方法についても解説します。
+
+Action View ヘルパー
+Action Viewで提供されるヘルパーの概要について解説します。
+
+Action View フォームヘルパー
+ビルトインのフォームヘルパーについて解説します。
+
+コントローラ
+Action Controller の概要
+本ガイドでは、コントローラの動作と、アプリケーションのリクエストサイクルでコントローラがどのように使われるかについて説明します。セッション、フィルタ、cookie、データストリーミング、リクエストによって発生する例外、その他多くの話題を取り扱っています。
+
+Action Controller の高度なトピック
+本ガイドでは、クロスサイトリクエストフォージェリの防止、HTTP認証、データストリーミング、例外の処理、ログのフィルタリングなど、Railsアプリケーションのコントローラーに関連する多くの高度なトピックを扱います。
+
+Rails のルーティング
+Railsのルーティング機能について解説します。Railsアプリケーションで行われているルーティングのしくみについて理解したい場合は、ここからお読みください。
+
+他の構成要素
+Active Support コア拡張機能
+Active Supportで定義されているRubyのコア拡張機能に関するドキュメントです。
+
+Action Mailer の基礎
+Action Mailerを使ってメールを送受信する方法について解説します。
+
+Action Mailbox の基礎
+Action Mailboxを使ってメールを受信する方法について解説します。
+
+Action Text の概要
+Action Textを使ったリッチテキスト形式のデータの取り扱い方法について解説します。
+
+Active Job の基礎
+バックグラウンドで動作するジョブの作成・キュー送信・実行方法に必要なすべてを解説します。
+
+Active Storage の概要
+Active Recordモデルにファイルを添付する方法について解説します。
+
+Action Cable の概要
+リアルタイム機能を実現するAction Cableの動作と、WebSocketsの利用法について解説します。
+
+Webpacker の概要
+Railsがラップするwebpackビルドシステム「Webpacker」について解説します。
+
+高度なトピック
+Rails 国際化（I18n）API
+Railsアプリケーションを国際化する方法について解説します。これによりアプリケーションを異なる言語に翻訳することができ、さらに単数形/複数形ルールを変更したり、その国に適した日付フォーマットを設定したりできます。
+
+Rails テスティングガイド
+Railsでさまざまなテストを実行するための総合的な解説を行います。「テスティングとは何か」から結合テストまですべてのトピックを扱います。
+
+Rails アプリケーションのデバッグ
+Railsアプリケーションのデバッグ方法について解説します。さまざまなデバッグ方法や、作成したコードの舞台裏でどのような動作が行われているかについても解説します。
+
+Rails アプリケーションの設定項目
+Railsアプリケーションの基本的な設定方法（Config：コンフィグ）について解説します。
+
+コマンドラインツール
+Railsが提供する各種コマンドラインツールについて解説します。
+
+アセットパイプライン
+アセットパイプラインガイドでは、重要なアセット管理タスクを処理するフレームワークであるPropshaftの使い方について解説します。
+
+Rails で JavaScript を利用する
+importmapやjsbundling-railsを用いてRaisアプリケーションにJavaScriptを組み込む方法を解説します。RailsでTurboを使う基本的な方法についても解説します。
+
+Rails の初期化プロセス
+Work in progress
+Rails内部の初期化プロセスについて解説します。
+
+Rails の自動読み込みと再読み込み
+Rails内部の自動読み込みや再読み込みの動作について解説します。
+
+Classic から Zeitwerk への移行
+RailsアプリケーションをClassicモードからZeitwerkモードに移行する手順を解説します。
+
+Active Support Instrumentation で計測
+Work in progress
+RailsなどのRubyコード内のイベント測定に使う、Active Support内のInstrumentation APIについて解説します。
+
+Rails アプリケーションのテンプレート
+Work in progress
+テンプレートを使って生成/カスタマイズを行う方法や、テンプレートAPIを使って再利用可能なテンプレートを開発する方法について解説します。
+
+Rails による API 専用アプリケーション
+JSON APIアプリケーションをRailsで効果的に作成する方法を解説します。
+
+デプロイ用パフォーマンスチューニング
+Ruby on Railsアプリケーションをproduction環境にデプロイする際のパフォーマンスとコンカレンシーの設定について解説します。
+
+Rails のキャッシュ機構
+キャッシュを活用してRailsを高速化する方法について解説します。
+
+Rails セキュリティガイド
+Webアプリケーション全般におけるセキュリティ問題と、Railsでこれらの問題を回避する方法について解説します。
+
+Rails アプリケーションのエラー通知
+Railsアプリケーションで発生するエラーを管理する方法について解説します。
+
+Active Recordの高度な話題
+Active Record と PostgreSQL
+Work in progress
+PostgreSQLに特化したActive Recordの利用法について解説します。
+
+Active Record と暗号化
+Work in progress
+Active Recordを用いてデータベースの情報を暗号化する方法について解説します。
+
+Active Record の複数データベース対応
+Active Recordで複数のデータベースを利用する方法について説明します。
+
+Active Record の複合主キー
+データベースのテーブルに複合主キーを導入する方法について解説します。
+
+Rails を拡張する
+Rails プラグイン作成入門
+Work in progress
+プラグインを作成してRailsの機能を拡張する方法について解説します。
+
+Rails と Rack
+RailsとRackがどのように統合されているか、および他のRackコンポーネントとのインターフェイスについて解説します。
+
+Rails ジェネレータとテンプレート入門
+新しいジェネレータを拡張に追加したり、ビルトインのRailsジェネレータの要素に別の要素を提供したりする方法（scaffoldジェネレータに別のテストスタブを提供するなど）について解説します。
+
+Rails エンジン入門
+Work in progress
+マウント可能なエンジンの作成方法について解説します。
+
+Rails のスレッドとコード実行
+Work in progress
+Railsアプリケーションの並行性について考慮すべきことや利用可能なツールについて解説します。
+
+Ruby on Rails に貢献する
+Ruby on Rails に貢献する方法
+Railsは「どこかで誰かがうまくやってくれているフレームワーク」ではありません。現在も継続しているRailsフレームワーク開発に貢献するさまざまな方法について解説します。
+
+Rails コア開発環境の構築方法
