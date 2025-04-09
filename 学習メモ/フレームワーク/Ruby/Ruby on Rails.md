@@ -886,7 +886,9 @@
                     - どのコントローラーのアクションと対応するViewを渡すか指示され、ユーザーへViewが返されるため別のファイルが送られる
         - リンクを作成する方法は２つある
             - htmlのaタグのhrefで指定する方法
-                - <a href =”test”>test by href<a>
+                ```HTML
+                <a href =”test”>test by href<a>
+                ```
             - Railsのlink_toメソッドを使う方法
                 - <%= link_to(”test by link_to, “test”) %>
                     - 第一引数に`ブラウザに表示する文字`を取り、第二引数に`URL`を取ります。
@@ -1088,104 +1090,99 @@
                             - userコントローラー内でpresence:trueを活用してvaridetionをかける
                                 - varidetion :password, {presence:true}
 
-・要件
-　 ログイン画面の入力フォームで情報を送信した際にコントローラー側にデータが送られるようにしたい
-・ユーザー体験
-　　なし
-・処理
-　　ルーティングの設定
-　　　フォームからのデータを受け取るためpostで始める
-　　　　post "login" => "users#login"
-　　アクションの定義
-def login end
-フォームの送信先の設定
-　form_tagメソッド
-　　login_form.html.erbにフォームの送信先を設定する
-　inputタグ
-　　Rails側に情報を渡すためにname属性を設定する
+    - progateの要件定義・処理
+        - 要件
+            - ログイン画面の入力フォームで情報を送信した際にコントローラー側にデータが送られるようにしたい
+        - ユーザー体験
+            - なし
+        - 処理
+            - ルーティングの設定
+                - フォームからのデータを受け取るためpostで始める
+                    - post "login" => "users#login"
+            - アクションの定義
+                - def login end
+            - フォームの送信先の設定
+                - form_tagメソッド
+                    - login_form.html.erbにフォームの送信先を設定する
+                - inputタグ
+                    - Rails側に情報を渡すためにname属性を設定する
+        - 要件
+            - 入力フォームで入力されたユーザ情報を元にユーザを特定する。
+                - 入力情報に該当するユーザがいた場合には投稿一覧ページへの転送
+                    - サクセスメッセージの表示
+                        - 入力内容に該当するユーザが見つからない場合には再度入力画面に移動する
+        - ユーザー体験
+            - ユーザ情報入力画面で情報を入力しログインボタンをクリックredi
+                - ユーザ情報が正しければ投稿一覧ページへ転送される
+                    - サクセスメッセージも表示される
+                        - ユーザ情報が間違えていると再度入力画面へ移動する
+        - 処理
+            - ログイン情報入力ページ（login_form）から送信されたデータを元にユーザ情報を取得する
+                - user = Users.find_by(email: params[:email], password: params[:password])
+                    - ユーザ情報があっていた時と間違えていた時で処理を変える
+                        - ユーザ情報が正しい場合には
+                            - if user →真偽値がtrue
+                                - flesh[:notice]="ログインしました”
+                                    - redirect_to("/posts/index")
+                                        - if user →真偽値がfalse
+                                            - render("users/rogin_form")
+                                                - if user flesh[:notice]="ログインしました”  
+                                                    - redirect_to("/users/index") else render("users/rogin_form")
+        - 要件
+            - ログイン画面で入力フォームに情報を入力した際に入力された情報と一致するユーザが存在しない場合に、エラーメッセージの表示と直前の編集内容を初期値として入力フォームに表示されるようにしたい
+        - ユーザー体験
+            - ログイン画面でユーザ情報を入力する
+                - 入力内容が正しければ、投稿一覧へ
+                - 入力内容が間違えている場合には再度ログインページへ移動しエラーメッセージの表示と直前の入力内容が表示されるようにする
+        - 処理
+            - 入力情報がデータベースと一致しない場合にはエラーメッセージの表示と直前の編集内容を初期値として入力フォームに表示されるようにしたい
+                - @error_message=”メールアドレスまたはパスワードが間違っています”
+                    - inputの初期値として<value= "<%= @email %>" >  <value= "<%= password %>" >
+        - 要件
+            - 特定のユーザでログイン状態を保つ
+        - ユーザー体験
+            - ログインに成功すると投稿一覧ページに転送される
+                - 新規投稿ページなどに移動してもログイン状態が保たれる
+        - 処理
+            - 変数sessionを活用してログインフォームから送信された情報を元にログイン状態を保つ
+                - ログインできた場合にはヘッダーにログインしているユーザーのIDを表示する
+                    - 変数sessionを活用してログイン状態を保つ
+                - session[:user_id]=@user.id
+                    - def login
+                        - @user=User.find_by(email: params[:email],password: params[:password])
+                        - if @user session[:user_id]=@user.id
+                - ログイン後のViewでヘッダー部分にIDを表示する
+                    - <li>ログインしているユーザーID：@user.id　</li>
+        - 要件
+            - ログアウト機能を作る。
+                - ログイン状態とログアウト状態でヘッダー部分の表示を変える
+        - ユーザー体験
+            - ログアウトした際にヘッダーの表示にログインしているユーザーの表示がなくなる。
+                - ログイン画面に転送されるようにする
+        - 処理
+            - ログアウト機能
+                - アクション
+            - def logput session[:user_id]="nil" flash[:notice] ="ログアウトしました” redirect_to("/login") end
+            - ルーティング
+                - post "/logout" => "users#logout"
+                    - ヘッダー部分にif文を作成する
+                        - ログイン状態orログアウト状態
+                            - HTML内にRubyコードを書くことになるため＜％％＞で囲む
+                                - <%= if session[:user_id] %> <li> <%= session[:user_id] %> </li> <%= else %> <%= link_to(,,,,about) %>
+                                
+                                getとpostの違いを整理
+                　
+                                get
+                　　 
+                                データベースに変更を加えない
+                　　           
+                                post
+                                
+                                    データベースに変更を加える
+                                    
+                                sessionの値を変更する場合
 
-・要件
-　 入力フォームで入力されたユーザ情報を元にユーザを特定する。
-　 　入力情報に該当するユーザがいた場合には投稿一覧ページへの転送
-　 　　サクセスメッセージの表示
-　 　入力内容に該当するユーザが見つからない場合には再度入力画面に移動する
-・ユーザー体験
-　　ユーザ情報入力画面で情報を入力しログインボタンをクリックredi
-　　　ユーザ情報が正しければ投稿一覧ページへ転送される
-　　　　サクセスメッセージも表示される
-　　　ユーザ情報が間違えていると再度入力画面へ移動する
-・処理
-　　ログイン情報入力ページ（login_form）から送信されたデータを元にユーザ情報を取得する
-　　　user = Users.find_by(email: params[:email], password: params[:password])
-　　ユーザ情報があっていた時と間違えていた時で処理を変える
-　　 ユーザ情報が正しい場合には
-　　 　if user →真偽値がtrue
-　　 　 flesh[:notice]="ログインしました”
-　　 　 redirect_to("/posts/index")
-　　 　if user →真偽値がfalse
-　　 　 render("users/rogin_form")
-　　　if user flesh[:notice]="ログインしました”  redirect_to("/users/index") else render("users/rogin_form")
-
-・要件
-ログイン画面で入力フォームに情報を入力した際に入力された情報と一致するユーザが存在しない場合に、エラーメッセージの表示と直前の編集内容を初期値として入力フォームに表示されるようにしたい
-・ユーザー体験
-　　ログイン画面でユーザ情報を入力する
-　　　入力内容が正しければ、投稿一覧へ
-　　　入力内容が間違えている場合には再度ログインページへ移動しエラーメッセージの表示と直前の入力内容が表示されるようにする
-・処理
-入力情報がデータベースと一致しない場合にはエラーメッセージの表示と直前の編集内容を初期値として入力フォームに表示されるようにしたい
-　　 @error_message=”メールアドレスまたはパスワードが間違っています”
-　　 inputの初期値として<value= "<%= @email %>" >  <value= "<%= password %>" >
-
-・要件
-　　特定のユーザでログイン状態を保つ
-・ユーザー体験
-　　ログインに成功すると投稿一覧ページに転送される
-　　　新規投稿ページなどに移動してもログイン状態が保たれる
-・処理
-　　変数sessionを活用してログインフォームから送信された情報を元にログイン状態を保つ
-　　　ログインできた場合にはヘッダーにログインしているユーザーのIDを表示する
-　　　　変数sessionを活用してログイン状態を保つ
-　　　　　session[:user_id]=@user.id
-def login @user=User.find_by(email: params[:email],password: params[:password]) if @user session[:user_id]=@user.id
-ログイン後のViewでヘッダー部分にIDを表示する
-　<li>ログインしているユーザーID：@user.id　</li>
-
-
-
-Keyword
-Memcached
-KVS
-delegate ruby on rails
-raise
-
-https://qiita.com/zettaittenani/items/a75f0da8f44cfe0f85c0https://www.railstutorial.org/book/basic_login#sec-sessions_and_failed_loginhttps://zenn.dev/sudoukky/articles/4d8a0883b76add
-
-・要件
-　ログアウト機能を作る。
-　　ログイン状態とログアウト状態でヘッダー部分の表示を変える
-・ユーザー体験
-　　ログアウトした際にヘッダーの表示にログインしているユーザーの表示がなくなる。
-　　　ログイン画面に転送されるようにする
-・処理
-　　ログアウト機能
-　　　アクション
-　　　　def logput session[:user_id]="nil" flash[:notice] ="ログアウトしました” redirect_to("/login") end
-　　　ルーティング
-　　　　post "/logout" => "users#logout"
-　　ヘッダー部分にif文を作成する
-　　　ログイン状態orログアウト状態
-　　　　HTML内にRubyコードを書くことになるため＜％％＞で囲む
-　　　　　<%= if session[:user_id] %> <li> <%= session[:user_id] %> </li> <%= else %> <%= link_to(,,,,about) %>
-
-getとpostの違いを整理
-　　get
-　　 データベースに変更を加えない
-　　post
-　　　データベースに変更を加える
-　　　sessionの値を変更する場合
-
-・要件
+要件
 ユーザーログイン後、ログイン状態が保持されるようにする
 ・ユーザー体験
 　　ユーザ情報を打ち込みログインする
