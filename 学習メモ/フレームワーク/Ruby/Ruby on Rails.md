@@ -740,6 +740,28 @@
             - コントローラーからモデルを介してアクセスする
                 - コントローラー内で＠変数に対してテーブル情報を代入
                     - View内で変数名.カラム名とする事で特定のデータを参照する事ができる
+    - Active Recordとは？
+        - RDBをRubyコードにマッピングする機能
+            - CRUD操作　＝＞　構造化クエリ言語(SQL)
+                - テーブルやレコードの作成、更新、削除など
+    - Active Recordモデルの基礎
+        - モデルジェネレーターを実行してProductモデルを作成するとapp/models/product.rbにファイルが生成される
+            - ApplicationRecordを継承しているのみで他にはコードは記載されていない
+                - モデルの定義はどこからくるのか？
+                    - 表面上に記載するのではなく、バックグラウンドで処理してくれる
+                        - Product.column_names
+                            - Railsは動的にクラスの属性を定義する
+                                - 開発者が手動で定義する必要がない
+        - store(dev)> product = Product.new(name: "T-Shirt")
+        - store(dev)> product.save
+            - INSERTクエリを生成してレコードをDBへ挿入する
+        - store(dev)> product
+        - Product.create(name: "Pants")
+            - createを使うとインスタンスの生成、DBへの保存を一括で出来る。
+        - レコードをクエリで取り出す
+            - ActiveRailsモデルを使ってDB内のレコードを検索する事が出来る
+                - all => クラスメソッド
+                    - Productに対して呼び出す
     - DB（データベース）
         - データの貯蔵庫
             - レコードとカラムで形成されるテーブルが集まったもの
@@ -759,6 +781,9 @@
                         - 受け取るデータをUser.new(カラム名: params[name属性], ラム名: params[name属性])とする事でインスタンスを作成する
                         - saveメソッドを使いデータを保存する
                         - redirect_toメソッドを活用して、データが保存に成功した場合に別のページに移動するようにする
+    - マイグレーション(migration)
+        - データベースに対して行う一連の変更のこと
+            - マイグレーションを定義する事で一連の変更をトラッキングできる
     - View
         - 画面 => 表示画面 => ページの見た目
     - コンソール
@@ -1020,13 +1045,15 @@
             ```
     - 変数session
         - ブラウザ上でログインした状態を保つ際に変数sessionを活用する
-ログインに成功したのちに変数sessionに対してid情報を代入するとブラウザ上でページ移動などをしてもブラウザ側でログイン情報を保存する。変数sessionがid情報をブラウザに返すようになるためログイン状態が保たれる
-session[キー]＝代入する値（ブラウザに表示する内容）
-
-変数sessionの構造
-　ActionController::Metal というクラスにあるsessionメソッド内でインスタンス変数@_requestにdelegateをしている　
-　ActionDispatch::Request::Session クラスのオブジェクトでgetアクションを呼び出す
-　@_requestインスタンスに key, value が代入される
+            - ログインに成功したのちに変数sessionに対してid情報を代入する。
+                - ブラウザ上でページ移動などをしてもブラウザ側でログイン情報を保存する。
+                    - 変数sessionがid情報をブラウザに返すようになる
+                        - ログイン状態が保たれる
+                            - session[キー]＝代入する値（ブラウザに表示する内容）
+        - 変数sessionの構造
+            - ActionController::Metal というクラスにあるsessionメソッド内でインスタンス変数@_requestにdelegateをしている　
+                - ActionDispatch::Request::Session クラスのオブジェクトでgetアクションを呼び出す
+                    - @_requestインスタンスに key, value が代入される
     - ログイン機能
         - 要件・処理
             - ログイン => {true => ログイン状態 , false => ログアウト状態 or 未サインアップ状態}
